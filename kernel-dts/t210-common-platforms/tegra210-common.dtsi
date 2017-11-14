@@ -20,6 +20,7 @@
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 #include <dt-bindings/gpio/tegra-gpio.h>
 #include <tegra210-soc/tegra210-prods.dtsi>
+#include <t210-common-platforms/tegra210-platform-common-padvoltage-default.dtsi>
 #include <t210-common-platforms/tegra210-ers-touch-e1937-1000-a00.dtsi>
 #include <tegra210-soc/tegra210-modem-common.dtsi>
 #include <tegra210-soc/tegra210-trusty.dtsi>
@@ -32,6 +33,8 @@
 		console-port;
 		sqa-automation-port;
 		enable-rx-poll-timer;
+		/delete-property/ resets;
+		/delete-property/ reset-names;
 		status = "okay";
 	};
 
@@ -47,10 +50,7 @@
 
 	pmc@7000e400 {
 		nvidia,restrict-voltage-switch;
-		pinctrl-names = "default";
-		pinctrl-0 = <&pinctrl_iopad_default>;
-
-                pinctrl_iopad_default: iopad-defaults {
+                iopad-defaults {
                         pex-io-pads {
 				pins = "pex-bias", "pex-clk1", "pex-clk2";
 				low-power-enable;
